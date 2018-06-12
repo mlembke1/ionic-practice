@@ -4,6 +4,13 @@
       Todo
     </ion-title>
     <ion-buttons end>
+      <button *ngIf='!reorderIsEnabled' ion-button (click)="toggleReorder()">
+        Edit
+      </button>
+      <button *ngIf='reorderIsEnabled' ion-button (click)="toggleReorder()">
+        Done
+      </button>
+
       <button ion-button (click)="openTodoAlert()">
         <ion-icon name="add"></ion-icon>
       </button>
@@ -13,7 +20,7 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <ion-list [reorder]="reorderIsEnabled" >
     <ion-item-sliding *ngFor="let todo of todos">
       <ion-item>{{ todo }}</ion-item>
       <ion-item-options side='right'>
